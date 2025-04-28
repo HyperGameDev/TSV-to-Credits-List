@@ -6,10 +6,10 @@
 [node name="Row1" type="PanelContainer"]
 theme = ExtResource("1_mo0af")
 
-[node name="MarginContainer_Msg" type="MarginContainer" parent="."]
+[node name="MarginContainer_Credit" type="MarginContainer" parent="."]
 layout_mode = 2
 
-[node name="Label_Credit" type="Label" parent="MarginContainer_Msg"]
+[node name="Label_Credit" type="Label" parent="MarginContainer_Credit"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2

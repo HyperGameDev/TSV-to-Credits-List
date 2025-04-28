@@ -157,10 +157,10 @@ layout_mode = 2
 theme = ExtResource("2_2blsu")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ulb4q")
 
-[node name="MarginContainer_Msg" type="MarginContainer" parent="MarginContainer/VBoxContainer/TSV_Preview/MarginContainer/ScrollContainer_TSV_Preview/VBox_TSV_Preview/PanelContainer_LoadedTSV/VBox_LoadedTSV/Row0"]
+[node name="MarginContainer_Credit" type="MarginContainer" parent="MarginContainer/VBoxContainer/TSV_Preview/MarginContainer/ScrollContainer_TSV_Preview/VBox_TSV_Preview/PanelContainer_LoadedTSV/VBox_LoadedTSV/Row0"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TSV_Preview/MarginContainer/ScrollContainer_TSV_Preview/VBox_TSV_Preview/PanelContainer_LoadedTSV/VBox_LoadedTSV/Row0/MarginContainer_Msg"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TSV_Preview/MarginContainer/ScrollContainer_TSV_Preview/VBox_TSV_Preview/PanelContainer_LoadedTSV/VBox_LoadedTSV/Row0/MarginContainer_Credit"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("2_2blsu")
