@@ -5,9 +5,11 @@ var main_plugin := preload("res://addons/tsv_to_credits_list/main_plugin.tscn").
 
 var _file_dialog: FileDialog = FileDialog.new()
 
+var maximum_credit_length: int = 100
 var lines_to_generate: int
 
-var credits_array: Array[String] = []
+var names_array: Array[String] = []
+var credits_dictionary
 
 func _enter_tree() -> void:
 	add_control_to_bottom_panel(main_plugin,"TSV to Credits List")
@@ -56,7 +58,7 @@ func _on_file_selected(path) -> void:
 	
 func clear_previous_tsv_data() -> void:
 	var tsv_table_rows: Array[Node] = main_plugin.vbox_tsv_table.get_children()
-	credits_array.clear()
+	names_array.clear()
 	for row in tsv_table_rows:
 		if row.name == "Row0":
 			continue
@@ -74,11 +76,12 @@ func parse_tsv(data) -> void:
 	
 	for line in lines:
 		var line_data: PackedStringArray = line.split("\t")
+		var credits_string: String = line_data[0] # [column number]
 		
-		var credits_string: String = line_data[0]
-		credits_array.append(credits_string.substr(0,100))
+		if int(line_data[1]) > 0: # Check column 2 (totals) for anything not 0
+			names_array.append(credits_string.substr(0,maximum_credit_length))
 		
-	lines_to_generate = lines.size()
+	lines_to_generate = names_array.size()
 	if lines_to_generate > 0:
 		generate_preview()
 
@@ -90,11 +93,10 @@ func generate_table_preview() -> void:
 	var tsv_table: VBoxContainer = main_plugin.vbox_tsv_table
 	
 	for i in lines_to_generate:
-		if i < 1:
-			continue
 		var tsv_row := preload("res://addons/tsv_to_credits_list/row.tscn").instantiate()
 		tsv_table.add_child(tsv_row)
-		tsv_row.get_node("%Label_Credit").text = credits_array[i]
+		tsv_row.get_node("%Label_Credit").text = names_array[i]
+		print(names_array[i])
 		
 func _on_scene_changed(scene):
 	var generate_button: Button = main_plugin.button_generate
@@ -150,11 +152,8 @@ func _on_generate_pressed() -> void:
 func generate_credits(scene_being_edited,list_to_add_credits_to) -> void:
 	var credits_container: MarginContainer = list_to_add_credits_to.credits_container
 	
-	for i in range(credits_array.size()):
-		if i == 0:
-			continue
-	
-		var credit = credits_array[i]
+	for i in range(names_array.size()):
+		var credit = names_array[i]
 		var credit_label := preload("res://addons/tsv_to_credits_list/label_credit_1.tscn").instantiate()
 		credits_container.add_child(credit_label)
 		credit_label.owner = scene_being_edited

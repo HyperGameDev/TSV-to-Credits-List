@@ -5,3 +5,4 @@ res://addons/tsv_to_credits_list/row.tscn
 res://addons/tsv_to_credits_list/tsv_credits_list.tscn
 res://addons/tsv_to_credits_list/tsv_credits_list.gd
 res://addons/tsv_to_credits_list/label_credit_1.tscn
+res://addons/tsv_to_credits_list/tsv_to_credits_list.gd
