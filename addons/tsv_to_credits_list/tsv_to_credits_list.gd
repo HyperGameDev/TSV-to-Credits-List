@@ -1,18 +1,16 @@
 @tool
 extends EditorPlugin
 
-var main_plugin := preload("res://addons/tsv_to_message_box/main_plugin.tscn").instantiate()
+var main_plugin := preload("res://addons/tsv_to_credits_list/main_plugin.tscn").instantiate()
 
 var _file_dialog: FileDialog = FileDialog.new()
 
-var skip_top_row: bool = true
-
 var lines_to_generate: int
 
-var message_array: Array[String] = []
+var credits_array: Array[String] = []
 
 func _enter_tree() -> void:
-	add_control_to_bottom_panel(main_plugin,"TSV to Msg Box")
+	add_control_to_bottom_panel(main_plugin,"TSV to Credits List")
 	
 	create_file_dialog()
 	
@@ -43,7 +41,6 @@ func _on_reset_pressed() -> void:
 	
 func reset_buttons(do_reset:bool) -> void:
 	main_plugin.button_reset.visible = do_reset
-	main_plugin.cbox_skip_first.disabled = do_reset
 	main_plugin.button_upload.disabled = do_reset
 
 func _on_file_selected(path) -> void:
@@ -52,8 +49,6 @@ func _on_file_selected(path) -> void:
 	
 	clear_previous_tsv_data()
 	
-	check_for_row_skip()
-	
 	var tsv_file_path: String = path
 	main_plugin.file_name.text = tsv_file_path
 	
@@ -61,14 +56,11 @@ func _on_file_selected(path) -> void:
 	
 func clear_previous_tsv_data() -> void:
 	var tsv_table_rows: Array[Node] = main_plugin.vbox_tsv_table.get_children()
-	message_array.clear()
+	credits_array.clear()
 	for row in tsv_table_rows:
 		if row.name == "Row0":
 			continue
 		row.queue_free()
-		
-func check_for_row_skip() -> void:
-	skip_top_row = main_plugin.cbox_skip_first.button_pressed
 		
 
 func load_tsv(path) -> void:
@@ -83,8 +75,8 @@ func parse_tsv(data) -> void:
 	for line in lines:
 		var line_data: PackedStringArray = line.split("\t")
 		
-		var message_string: String = line_data[0]
-		message_array.append(message_string.substr(0,100))
+		var credits_string: String = line_data[0]
+		credits_array.append(credits_string.substr(0,100))
 		
 	lines_to_generate = lines.size()
 	if lines_to_generate > 0:
@@ -98,12 +90,11 @@ func generate_table_preview() -> void:
 	var tsv_table: VBoxContainer = main_plugin.vbox_tsv_table
 	
 	for i in lines_to_generate:
-		if skip_top_row:
-			if i < 1:
-				continue
-		var tsv_row := preload("res://addons/tsv_to_message_box/row.tscn").instantiate()
+		if i < 1:
+			continue
+		var tsv_row := preload("res://addons/tsv_to_credits_list/row.tscn").instantiate()
 		tsv_table.add_child(tsv_row)
-		tsv_row.get_node("%Label_Message").text = message_array[i]
+		tsv_row.get_node("%Label_Credit").text = credits_array[i]
 		
 func _on_scene_changed(scene):
 	var generate_button: Button = main_plugin.button_generate
@@ -118,7 +109,7 @@ func _on_scene_changed(scene):
 func show_preview_elements(do_show: bool) -> void:
 	var tsv_preview: PanelContainer = main_plugin.tsv_preview
 	var tsv_instructions: Label = main_plugin.tsv_instructions
-	var generate_button: Button = main_plugin.button_generate
+	var generate_button: Button = main_plugin.button_generate 
 	
 	tsv_preview.visible = do_show
 	tsv_instructions.visible = do_show
@@ -133,54 +124,54 @@ func show_tsv_to_generate() -> void:
 	
 func _on_generate_pressed() -> void:
 	var scene_being_edited := get_editor_interface().get_edited_scene_root()
-	var add_a_box: bool = true
+	var add_a_list: bool = true
 	
 	var hbox_error: HBoxContainer = main_plugin.hbox_error
 	var label_error_msg: Label = main_plugin.label_error_msg
 	
 	for node in scene_being_edited.get_children():
-		if node is MessageBox_TSV_Import:
-			add_a_box = false
+		if node is CreditsList_TSV_Import:
+			add_a_list = false
 			
 			hbox_error.visible = true
-			label_error_msg.text = "A message box already exists!"
+			label_error_msg.text = "A credits lists already exists!"
 			
 			break
 			
-	if add_a_box:
+	if add_a_list:
 		hbox_error.visible = false
-		var message_box := preload("res://addons/tsv_to_message_box/tsv_message_box.tscn").instantiate()
+		var credits_list := preload("res://addons/tsv_to_credits_list/tsv_credits_list.tscn").instantiate()
 
 		if scene_being_edited:
-			scene_being_edited.add_child(message_box)
-			generate_messages(scene_being_edited,message_box)
+			scene_being_edited.add_child(credits_list)
+			generate_credits(scene_being_edited,credits_list)
 			
 	
-func generate_messages(scene_being_edited,box_to_add_messages_to) -> void:
-	var messages_container: MarginContainer = box_to_add_messages_to.messages_container
+func generate_credits(scene_being_edited,list_to_add_credits_to) -> void:
+	var credits_container: MarginContainer = list_to_add_credits_to.credits_container
 	
-	for i in range(message_array.size()):
-		if skip_top_row and i == 0:
+	for i in range(credits_array.size()):
+		if i == 0:
 			continue
 	
-		var message = message_array[i]
-		var messages_label := preload("res://addons/tsv_to_message_box/label_message_1.tscn").instantiate()
-		messages_container.add_child(messages_label)
-		messages_label.owner = scene_being_edited
-		messages_label.text = message
+		var credit = credits_array[i]
+		var credit_label := preload("res://addons/tsv_to_credits_list/label_credit_1.tscn").instantiate()
+		credits_container.add_child(credit_label)
+		credit_label.owner = scene_being_edited
+		credit_label.text = credit
 
 		
-	messages_container.get_child(0).visible = true
-	add_box_to_edited_scene(scene_being_edited,box_to_add_messages_to)
+	credits_container.get_child(0).visible = true
+	add_list_to_edited_scene(scene_being_edited,list_to_add_credits_to)
 	
-func add_box_to_edited_scene(scene_with_messages,message_box_to_add):
+func add_list_to_edited_scene(scene_with_credits,credits_list_to_add):
 				
-	message_box_to_add.owner = scene_with_messages
+	credits_list_to_add.owner = scene_with_credits
 	
 	
 	
-	if not get_parent().is_editable_instance(message_box_to_add):
-		get_parent().set_editable_instance(message_box_to_add,true)
+	if not get_parent().is_editable_instance(credits_list_to_add):
+		get_parent().set_editable_instance(credits_list_to_add,true)
 	
 	
 

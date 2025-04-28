@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dupjitbvvnx8t"]
+[gd_scene load_steps=0 format=3 uid="uid://dupjitbvvnx8t"]
 
 [node name="Label_Message1" type="Label"]
 visible = false

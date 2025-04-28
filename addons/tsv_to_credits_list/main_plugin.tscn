@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c84pa14kfyf67"]
 
-[ext_resource type="Script" uid="uid://ba2oa3eyk8m7b" path="res://addons/tsv_to_message_box/main_plugin.gd" id="1_nck0t"]
-[ext_resource type="Theme" uid="uid://dfijk5eiowfdi" path="res://addons/tsv_to_message_box/theme/ui.tres" id="2_2blsu"]
+[ext_resource type="Script" uid="uid://d1k87v56tl3bt" path="res://addons/tsv_to_credits_list/main_plugin.gd" id="1_8vrqk"]
+[ext_resource type="Theme" uid="uid://dfijk5eiowfdi" path="res://addons/tsv_to_credits_list/theme/ui.tres" id="2_2blsu"]
 
 [sub_resource type="Theme" id="Theme_h7b3v"]
 
@@ -30,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nck0t")
+script = ExtResource("1_8vrqk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -52,7 +52,7 @@ alignment = 1
 layout_mode = 2
 theme = SubResource("Theme_h7b3v")
 theme_override_font_sizes/font_size = 26
-text = "TSV to Message Box"
+text = "TSV to Credits List"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
@@ -90,6 +90,7 @@ text = "Upload"
 
 [node name="CheckBox_SkipFirst" type="CheckBox" parent="MarginContainer/VBoxContainer/HBox_Upload"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 button_pressed = true
 text = " Skip first row of sheet"

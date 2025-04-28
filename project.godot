@@ -21,7 +21,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tsv_to_message_box/plugin.cfg")
+enabled=PackedStringArray("res://addons/tsv_to_credits_list/plugin.cfg")
 
 [rendering]
 
