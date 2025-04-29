@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cutt13xj1h074"]
+[gd_scene load_steps=12 format=3 uid="uid://cutt13xj1h074"]
 
 [ext_resource type="Script" uid="uid://bce6p8e75fctp" path="res://addons/tsv_to_credits_list/tsv_credits_list.gd" id="1_k7r22"]
 [ext_resource type="PackedScene" uid="uid://dupjitbvvnx8t" path="res://addons/tsv_to_credits_list/label_credit_1.tscn" id="2_vcash"]
+[ext_resource type="PackedScene" uid="uid://dfom8l4ub25vq" path="res://addons/tsv_to_credits_list/title_separator.tscn" id="3_a5mea"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2hnh"]
 bg_color = Color(0, 0, 0, 1)
@@ -60,10 +61,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -399.0
-offset_top = -215.0
-offset_right = 309.0
-offset_bottom = 213.0
+offset_left = -354.0
+offset_top = -214.0
+offset_right = 354.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_k2hnh")
@@ -78,7 +79,6 @@ custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 mouse_filter = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vcash")
-scroll_vertical = 583
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
@@ -95,6 +95,52 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_xklmk")
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
+
+[node name="Label_Credit2" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "
+
+Credits List Credits"
+
+[node name="Title_Separator" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("3_a5mea")]
+layout_mode = 2
+
+[node name="Label_Credit3" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "Lýz Lissade"
+
+[node name="Label_Credit11" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "PawnxPawn"
+
+[node name="Label_Credit4" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "murvkins"
+
+[node name="Label_Credit5" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "rulric"
+
+[node name="Label_Credit7" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "Timeless"
+
+[node name="Label_Credit8" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "Kieguy"
+
+[node name="Label_Credit10" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "Dungeon Martian"
+
+[node name="Label_Credit9" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "Precipire"
+
+[node name="Label_Credit6" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+text = "PKGameDev"
 
 [node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List"]
 custom_minimum_size = Vector2(0, 300)

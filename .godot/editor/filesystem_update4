@@ -6,3 +6,4 @@ res://addons/tsv_to_credits_list/tsv_credits_list.tscn
 res://addons/tsv_to_credits_list/label_credit_1.tscn
 res://addons/tsv_to_credits_list/title_separator.tscn
 res://addons/tsv_to_credits_list/tsv_credits_list.gd
+res://sample_project.gd
