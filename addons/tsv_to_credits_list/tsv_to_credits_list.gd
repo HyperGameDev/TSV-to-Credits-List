@@ -80,12 +80,12 @@ func parse_tsv(data) -> void:
 	
 func parse_titles(lines) -> void:
 	var titles_data: PackedStringArray = lines[0].split("\t")
+	var names_array: Array[Array] = []
 	
 	for line in lines:
 		var line_data: PackedStringArray = line.split("\t")
 		if total_above_zero(line_data):
 			var name_string: String = line_data[0] # [column number] Could this be moved to the next for loop?
-			var names_array: Array[Array] = []
 			
 			for title in range(titles_data.size()): # iterate through titles
 				if title > 1:
@@ -94,9 +94,6 @@ func parse_titles(lines) -> void:
 						names_array.append([name_string,credit_int,check_title(titles_data[title])])
 					
 			names_array.sort_custom(func(a, b): return a[1] > b[1])
-			
-			#for i in names_array:
-				#print(i[2],": ",i[0])
 
 			for title in range(titles_data.size()):
 				if title > 1:
@@ -105,15 +102,16 @@ func parse_titles(lines) -> void:
 					
 					if not credits_dictionary.has(title_string):
 						credits_dictionary[title_string] = []
-			
-			for key in credits_dictionary.keys():
-				for i in names_array:
-					var title_key: String = i[2]
-					var name_to_add: String = i[0]
-					if credits_dictionary[title_key].has(name_to_add):
-						continue
-					else:
-						credits_dictionary[title_key].append(name_to_add)
+	
+	for i in names_array:
+		var title_key: String = i[2]
+		var name_to_add: String = i[0]
+		
+		if credits_dictionary[title_key].has(name_to_add):
+			continue
+		else:
+			credits_dictionary[title_key].append(name_to_add)
+			continue
 	
 	for title in titles_data.slice(2):
 		#find titles but ignore first two columns
@@ -124,6 +122,9 @@ func parse_titles(lines) -> void:
 	if lines_to_generate > 0:
 		generate_preview()
 	
+	
+	#Dictionary print	
+	#print("\r\r",credits_dictionary["Brownie Points"])
 	print("\r\r",credits_dictionary)
 	
 func total_above_zero(line_data) -> bool:
