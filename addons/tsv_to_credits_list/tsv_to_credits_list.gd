@@ -9,7 +9,9 @@ var maximum_credit_length: int = 100
 var lines_to_generate: int
 
 var names_array: Array[String] = []
-var credits_dictionary
+var titles_array: Array[String] = []
+var credits_dictionary: Dictionary[String,Array] = {
+}
 
 func _enter_tree() -> void:
 	add_control_to_bottom_panel(main_plugin,"TSV to Credits List")
@@ -58,7 +60,7 @@ func _on_file_selected(path) -> void:
 	
 func clear_previous_tsv_data() -> void:
 	var tsv_table_rows: Array[Node] = main_plugin.vbox_tsv_table.get_children()
-	names_array.clear()
+	titles_array.clear()
 	for row in tsv_table_rows:
 		if row.name == "Row0":
 			continue
@@ -74,16 +76,62 @@ func load_tsv(path) -> void:
 func parse_tsv(data) -> void:
 	var lines: PackedStringArray = data.split("\n")
 	
+	parse_titles(lines)
+	#parse_names(lines)
+	
+func parse_titles(lines) -> void:
+	var titles_data: PackedStringArray = lines[0].split("\t")
+	
 	for line in lines:
-		var line_data: PackedStringArray = line.split("\t")
-		var credits_string: String = line_data[0] # [column number]
+		var name_data: PackedStringArray = line.split("\t")
+		if total_above_zero(name_data):
+			var name_string: String = name_data[0] # [column number]
+			
+			for title in range(titles_data.size()):
+				if title > 1:
+					var credit_int: int = int(name_data[title]) 
+					#print(name_string,": ",titles_data[title],": ",credit_int)
+					var title_string: String = check_title(titles_data[title])
+					if not credits_dictionary.has(title_string):
+						credits_dictionary[title_string] = []
+						if credit_int > 0:
+							credits_dictionary[title_string].append(name_string)
+					else:
+						if credit_int > 0:
+							credits_dictionary[title_string].append(name_string)
+	
+	for title in titles_data.slice(2):
+		#find titles but ignore first two columns
 		
-		if int(line_data[1]) > 0: # Check column 2 (totals) for anything not 0
-			names_array.append(credits_string.substr(0,maximum_credit_length))
+		titles_array.append(title.substr(0,maximum_credit_length))
 		
-	lines_to_generate = names_array.size()
+	lines_to_generate = titles_array.size()
 	if lines_to_generate > 0:
 		generate_preview()
+	
+	print(credits_dictionary)
+	
+func check_title(title:String) -> String:
+	if title.find("\r") != -1:  # Checks if \r exists in the string
+		return title.replace("\r", "")
+	else:
+		return title
+		
+#func parse_names(lines) -> void:
+	#for line in lines:
+		#var line_data: PackedStringArray = line.split("\t")
+		#var credits_string: String = line_data[0] # [column number]
+		#
+		#if total_above_zero(line_data):
+			#names_array.append(credits_string.substr(0,maximum_credit_length))
+		#
+	#lines_to_generate = names_array.size()
+	#if lines_to_generate > 0:
+		#generate_preview()
+
+func total_above_zero(line_data) -> bool:
+	return int(line_data[1]) > 0 # Check column 2 (totals) for anything not 0
+
 
 func generate_preview() -> void:
 	generate_table_preview()
@@ -95,8 +143,8 @@ func generate_table_preview() -> void:
 	for i in lines_to_generate:
 		var tsv_row := preload("res://addons/tsv_to_credits_list/row.tscn").instantiate()
 		tsv_table.add_child(tsv_row)
-		tsv_row.get_node("%Label_Credit").text = names_array[i]
-		print(names_array[i])
+		tsv_row.get_node("%Label_Credit").text = titles_array[i]
+		#print(titles_array[i])
 		
 func _on_scene_changed(scene):
 	var generate_button: Button = main_plugin.button_generate
@@ -152,8 +200,8 @@ func _on_generate_pressed() -> void:
 func generate_credits(scene_being_edited,list_to_add_credits_to) -> void:
 	var credits_container: MarginContainer = list_to_add_credits_to.credits_container
 	
-	for i in range(names_array.size()):
-		var credit = names_array[i]
+	for i in range(titles_array.size()):
+		var credit = titles_array[i]
 		var credit_label := preload("res://addons/tsv_to_credits_list/label_credit_1.tscn").instantiate()
 		credits_container.add_child(credit_label)
 		credit_label.owner = scene_being_edited
