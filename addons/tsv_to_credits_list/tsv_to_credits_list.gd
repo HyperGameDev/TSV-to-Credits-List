@@ -74,11 +74,9 @@ func load_tsv(path) -> void:
 	
 func parse_tsv(data) -> void:
 	var lines: PackedStringArray = data.split("\n")
+	parse_credits(lines)
 	
-	parse_titles(lines)
-	#parse_names(lines)
-	
-func parse_titles(lines) -> void:
+func parse_credits(lines) -> void:
 	var titles_data: PackedStringArray = lines[0].split("\t")
 	var names_array: Array[Array] = []
 	
@@ -122,10 +120,7 @@ func parse_titles(lines) -> void:
 	if lines_to_generate > 0:
 		generate_preview()
 	
-	
-	#Dictionary print	
-	#print("\r\r",credits_dictionary["Brownie Points"])
-	print("\r\r",credits_dictionary)
+	#print("\r\r",credits_dictionary)
 	
 func total_above_zero(line_data) -> bool:
 	return int(line_data[1]) > 0 # Check column 2 (totals) for anything not 0
@@ -135,18 +130,6 @@ func check_title(title:String) -> String:
 		return title.replace("\r", "")
 	else:
 		return title
-		
-#func parse_names(lines) -> void:
-	#for line in lines:
-		#var line_data: PackedStringArray = line.split("\t")
-		#var credits_string: String = line_data[0] # [column number]
-		#
-		#if total_above_zero(line_data):
-			#names_array.append(credits_string.substr(0,maximum_credit_length))
-		#
-	#lines_to_generate = names_array.size()
-	#if lines_to_generate > 0:
-		#generate_preview()
 
 func generate_preview() -> void:
 	generate_table_preview()
@@ -213,7 +196,7 @@ func _on_generate_pressed() -> void:
 			
 	
 func generate_credits(scene_being_edited,list_to_add_credits_to) -> void:
-	var credits_container: MarginContainer = list_to_add_credits_to.credits_container
+	var credits_container: ScrollContainer = list_to_add_credits_to.credits_container
 	
 	for i in range(titles_array.size()):
 		var credit = titles_array[i]

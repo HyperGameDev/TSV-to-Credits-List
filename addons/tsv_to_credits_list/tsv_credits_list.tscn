@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cutt13xj1h074"]
+[gd_scene load_steps=11 format=3 uid="uid://cutt13xj1h074"]
 
 [ext_resource type="Script" uid="uid://bce6p8e75fctp" path="res://addons/tsv_to_credits_list/tsv_credits_list.gd" id="1_k7r22"]
+[ext_resource type="PackedScene" uid="uid://dupjitbvvnx8t" path="res://addons/tsv_to_credits_list/label_credit_1.tscn" id="2_vcash"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2hnh"]
-bg_color = Color(0.486275, 0.564706, 0.882353, 0.690196)
+bg_color = Color(0, 0, 0, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -12,15 +13,32 @@ shadow_color = Color(0, 0, 0, 0.282353)
 shadow_size = 4
 shadow_offset = Vector2(4, 3)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vcash"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5mea"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xklmk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuldi"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcash"]
-bg_color = Color(0.486275, 0.564706, 0.882353, 0.690196)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-shadow_color = Color(0, 0, 0, 0.282353)
-shadow_size = 4
-shadow_offset = Vector2(4, 3)
+bg_color = Color(0.4, 0.204, 0.207267, 1)
+border_width_left = 5
+border_width_bottom = 3
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xklmk"]
+bg_color = Color(0.151337, 9.20501e-07, 0.00255947, 1)
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5mea"]
+bg_color = Color(0.151337, 9.20501e-07, 0.00255947, 1)
+border_width_left = 5
+border_width_bottom = 3
+corner_radius_bottom_left = 20
 
 [node name="CanvasLayer_CreditsList" type="CanvasLayer"]
 script = ExtResource("1_k7r22")
@@ -37,44 +55,94 @@ size_flags_vertical = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -380.0
-offset_top = -217.0
-offset_right = 380.0
+anchor_bottom = 0.5
+offset_left = -399.0
+offset_top = -215.0
+offset_right = 309.0
+offset_bottom = 213.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_k2hnh")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 45
 
-[node name="MarginContainer_Credits" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer_Credits" type="ScrollContainer" parent="Control/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+mouse_filter = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vcash")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Credits_List" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits"]
+layout_mode = 2
+
+[node name="VBox_Labels" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/margin_left = 23
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 4
+alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label_Credit1" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
 layout_mode = 2
-theme_override_constants/margin_left = 524
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 15
+theme_override_font_sizes/font_size = 52
+text = "
+Title"
 
-[node name="Button_Next" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="Label_Credit2" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
+layout_mode = 2
+
+[node name="Label_Credit3" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
+layout_mode = 2
+
+[node name="Label_Credit4" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
+layout_mode = 2
+
+[node name="Label_Credit5" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
+layout_mode = 2
+
+[node name="Label_Credit6" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
+layout_mode = 2
+
+[node name="Label_Credit7" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
+layout_mode = 2
+
+[node name="Label_Credit8" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_a5mea")
+
+[node name="Label_Credit1" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" instance=ExtResource("2_vcash")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 66
+text = "Thanks for playing!"
+
+[node name="HSeparator2" type="HSeparator" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xklmk")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 640
+theme_override_constants/margin_bottom = 366
+
+[node name="Button_Close" type="Button" parent="Control/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.170415, 0.202303, 0.338399, 1)
-theme_override_constants/outline_size = 21
-theme_override_font_sizes/font_size = 46
-theme_override_styles/normal = SubResource("StyleBoxFlat_vcash")
-text = "Next >>"
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tuldi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vcash")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xklmk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a5mea")
+text = "X"
+icon_alignment = 1
