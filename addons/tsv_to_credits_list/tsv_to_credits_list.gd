@@ -8,7 +8,6 @@ var _file_dialog: FileDialog = FileDialog.new()
 var maximum_credit_length: int = 100
 var lines_to_generate: int
 
-var names_array: Array[String] = []
 var titles_array: Array[String] = []
 var credits_dictionary: Dictionary[String,Array] = {
 }
@@ -83,22 +82,32 @@ func parse_titles(lines) -> void:
 	var titles_data: PackedStringArray = lines[0].split("\t")
 	
 	for line in lines:
-		var name_data: PackedStringArray = line.split("\t")
-		if total_above_zero(name_data):
-			var name_string: String = name_data[0] # [column number]
+		var line_data: PackedStringArray = line.split("\t")
+		if total_above_zero(line_data):
+			var name_string: String = line_data[0] # [column number] Could this be moved to the next for loop?
+			var names_array: Array[Array] = []
 			
+			for title in range(titles_data.size()): # iterate through titles
+				if title > 1:
+					var credit_int: int = int(line_data[title]) # (row[column])
+					if credit_int > 0:
+						names_array.append([name_string,credit_int,titles_data[title]])
+					
+			names_array.sort_custom(func(a, b): return a[1] > b[1])
+			
+			for i in names_array:
+				print(check_title(i[2]),": ",i[0])
+
 			for title in range(titles_data.size()):
 				if title > 1:
-					var credit_int: int = int(name_data[title]) 
-					#print(name_string,": ",titles_data[title],": ",credit_int)
 					var title_string: String = check_title(titles_data[title])
+					#var sorted_name_string: String = names_array[[0]]
+					
 					if not credits_dictionary.has(title_string):
 						credits_dictionary[title_string] = []
-						if credit_int > 0:
-							credits_dictionary[title_string].append(name_string)
+						credits_dictionary[title_string].append(name_string)
 					else:
-						if credit_int > 0:
-							credits_dictionary[title_string].append(name_string)
+						credits_dictionary[title_string].append(name_string)
 	
 	for title in titles_data.slice(2):
 		#find titles but ignore first two columns
@@ -109,7 +118,10 @@ func parse_titles(lines) -> void:
 	if lines_to_generate > 0:
 		generate_preview()
 	
-	print(credits_dictionary)
+	#print(credits_dictionary)
+	
+func total_above_zero(line_data) -> bool:
+	return int(line_data[1]) > 0 # Check column 2 (totals) for anything not 0
 	
 func check_title(title:String) -> String:
 	if title.find("\r") != -1:  # Checks if \r exists in the string
@@ -128,10 +140,6 @@ func check_title(title:String) -> String:
 	#lines_to_generate = names_array.size()
 	#if lines_to_generate > 0:
 		#generate_preview()
-
-func total_above_zero(line_data) -> bool:
-	return int(line_data[1]) > 0 # Check column 2 (totals) for anything not 0
-
 
 func generate_preview() -> void:
 	generate_table_preview()
