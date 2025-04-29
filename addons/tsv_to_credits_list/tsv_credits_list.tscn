@@ -15,9 +15,9 @@ shadow_offset = Vector2(4, 3)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vcash"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5mea"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xklmk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5mea"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuldi"]
 
@@ -78,43 +78,23 @@ custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 mouse_filter = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vcash")
+scroll_vertical = 583
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
 [node name="Credits_List" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits"]
+unique_name_in_owner = true
 layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xklmk")
 
 [node name="VBox_Labels" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
-
-[node name="Label_Credit1" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
-theme_override_font_sizes/font_size = 52
-text = "
-Title"
-
-[node name="Label_Credit2" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
-
-[node name="Label_Credit3" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
-
-[node name="Label_Credit4" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
-
-[node name="Label_Credit5" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
-
-[node name="Label_Credit6" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
-
-[node name="Label_Credit7" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
-
-[node name="Label_Credit8" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" instance=ExtResource("2_vcash")]
-layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List"]
 custom_minimum_size = Vector2(0, 300)
@@ -146,3 +126,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xklmk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_a5mea")
 text = "X"
 icon_alignment = 1
+
+[node name="Credits_Tween_Control" type="Control" parent="Control"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

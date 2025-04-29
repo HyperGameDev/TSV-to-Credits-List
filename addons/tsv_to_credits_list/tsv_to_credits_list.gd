@@ -8,6 +8,8 @@ var _file_dialog: FileDialog = FileDialog.new()
 var maximum_credit_length: int = 100
 var lines_to_generate: int
 
+var title_font_size: int = 52
+
 var titles_array: Array[String] = []
 var credits_dictionary: Dictionary[String,Array] = {
 }
@@ -197,17 +199,39 @@ func _on_generate_pressed() -> void:
 	
 func generate_credits(scene_being_edited,list_to_add_credits_to) -> void:
 	var credits_container: ScrollContainer = list_to_add_credits_to.credits_container
+	var labels_vbox: VBoxContainer = list_to_add_credits_to.labels_vbox
+	var credit_titles_count_max: int = credits_dictionary.size()
+	var credit_titles_count_current: int = 0
+	var credit_titles_keys = credits_dictionary.keys()
 	
-	for i in range(titles_array.size()):
-		var credit = titles_array[i]
-		var credit_label := preload("res://addons/tsv_to_credits_list/label_credit_1.tscn").instantiate()
-		credits_container.add_child(credit_label)
-		credit_label.owner = scene_being_edited
-		credit_label.text = credit
-
+	for credit_title in range(credit_titles_count_max):
+		var credit_title_key: String = credit_titles_keys[credit_title]
+		create_title_label(scene_being_edited,labels_vbox,credit_title_key)
 		
-	credits_container.get_child(0).visible = true
+		var credit_names_count_max: int = credits_dictionary[credit_title_key].size()
+		for credit_name in range(credit_names_count_max):
+			var credit_name_to_add: String = credits_dictionary[credit_title_key][credit_name]
+			create_name_label(scene_being_edited,labels_vbox,credit_name_to_add)
+	
+
 	add_list_to_edited_scene(scene_being_edited,list_to_add_credits_to)
+	
+func create_title_label(scene_being_edited,vbox: VBoxContainer, credit_title: String) -> void:
+	var title_label := preload("res://addons/tsv_to_credits_list/label_credit_1.tscn").instantiate()
+	vbox.add_child(title_label)
+	title_label.owner = scene_being_edited
+	title_label.text = "\r\r\r" + credit_title
+	title_label.add_theme_font_size_override("font_size",title_font_size)
+	
+	var title_separator := preload("res://addons/tsv_to_credits_list/title_separator.tscn").instantiate()
+	vbox.add_child(title_separator)
+	title_separator.owner = scene_being_edited
+	
+func create_name_label(scene_being_edited,vbox: VBoxContainer, credit_name: String) -> void:
+	var name_label := preload("res://addons/tsv_to_credits_list/label_credit_1.tscn").instantiate()
+	vbox.add_child(name_label)
+	name_label.owner = scene_being_edited
+	name_label.text = credit_name
 	
 func add_list_to_edited_scene(scene_with_credits,credits_list_to_add):
 				
