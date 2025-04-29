@@ -91,12 +91,12 @@ func parse_titles(lines) -> void:
 				if title > 1:
 					var credit_int: int = int(line_data[title]) # (row[column])
 					if credit_int > 0:
-						names_array.append([name_string,credit_int,titles_data[title]])
+						names_array.append([name_string,credit_int,check_title(titles_data[title])])
 					
 			names_array.sort_custom(func(a, b): return a[1] > b[1])
 			
-			for i in names_array:
-				print(check_title(i[2]),": ",i[0])
+			#for i in names_array:
+				#print(i[2],": ",i[0])
 
 			for title in range(titles_data.size()):
 				if title > 1:
@@ -105,9 +105,15 @@ func parse_titles(lines) -> void:
 					
 					if not credits_dictionary.has(title_string):
 						credits_dictionary[title_string] = []
-						credits_dictionary[title_string].append(name_string)
+			
+			for key in credits_dictionary.keys():
+				for i in names_array:
+					var title_key: String = i[2]
+					var name_to_add: String = i[0]
+					if credits_dictionary[title_key].has(name_to_add):
+						continue
 					else:
-						credits_dictionary[title_string].append(name_string)
+						credits_dictionary[title_key].append(name_to_add)
 	
 	for title in titles_data.slice(2):
 		#find titles but ignore first two columns
@@ -118,7 +124,7 @@ func parse_titles(lines) -> void:
 	if lines_to_generate > 0:
 		generate_preview()
 	
-	#print(credits_dictionary)
+	print("\r\r",credits_dictionary)
 	
 func total_above_zero(line_data) -> bool:
 	return int(line_data[1]) > 0 # Check column 2 (totals) for anything not 0
