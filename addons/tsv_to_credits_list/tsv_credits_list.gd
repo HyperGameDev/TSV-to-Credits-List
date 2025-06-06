@@ -4,6 +4,8 @@ class_name CreditsList_TSV_Import extends CanvasLayer
 signal open_credits_list
 signal close_credits_list
 
+var is_credits: bool = false
+
 @onready var credits_container: ScrollContainer = %ScrollContainer_Credits
 @onready var labels_vbox: VBoxContainer = %VBox_Labels
 @onready var credits_list: VBoxContainer = %Credits_List
@@ -38,13 +40,17 @@ func _on_close_pressed() -> void:
 	close_credits_list.emit()
 	
 func _on_open_credits_list() -> void:
+	is_credits = true
 	self.visible = true
 	start_scroll()
 	
 func _on_close_credits_list() -> void:
 	self.visible = false
 	
-	scroll_tween.stop()
+	if is_credits:
+		is_credits =  false
+		scroll_tween.stop()
+		
 	scroll_tween = null
 	
 	credits_container.scroll_vertical = 0
