@@ -1,6 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw1rhlsjpawc5"]
+[gd_scene load_steps=14 format=3 uid="uid://dw1rhlsjpawc5"]
 
 [ext_resource type="Script" uid="uid://dslhpy2lcmyuh" path="res://sample_project.gd" id="1_5begd"]
+[ext_resource type="PackedScene" uid="uid://cutt13xj1h074" path="res://addons/tsv_to_credits_list/tsv_credits_list.tscn" id="2_5begd"]
+[ext_resource type="Script" uid="uid://bce6p8e75fctp" path="res://addons/tsv_to_credits_list/tsv_credits_list.gd" id="3_q18ce"]
+[ext_resource type="PackedScene" uid="uid://dupjitbvvnx8t" path="res://addons/tsv_to_credits_list/label_credit_1.tscn" id="4_x6t3v"]
+[ext_resource type="PackedScene" uid="uid://dfom8l4ub25vq" path="res://addons/tsv_to_credits_list/title_separator.tscn" id="5_fo7re"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2hnh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+shadow_color = Color(0, 0, 0, 0.282353)
+shadow_size = 4
+shadow_offset = Vector2(4, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vcash"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xklmk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5mea"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuldi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcash"]
+bg_color = Color(0.4, 0.204, 0.207267, 1)
+border_width_left = 5
+border_width_bottom = 3
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xklmk"]
+bg_color = Color(0.151337, 9.20501e-07, 0.00255947, 1)
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5mea"]
+bg_color = Color(0.151337, 9.20501e-07, 0.00255947, 1)
+border_width_left = 5
+border_width_bottom = 3
+corner_radius_bottom_left = 20
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5begd")
@@ -14,3 +55,1680 @@ offset_bottom = 90.0
 theme_override_font_sizes/font_size = 26
 toggle_mode = true
 text = "Toggle Credits"
+
+[node name="CanvasLayer_CreditsList" parent="." instance=ExtResource("2_5begd")]
+script = ExtResource("3_q18ce")
+
+[node name="Control" parent="CanvasLayer_CreditsList" index="0"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer" parent="CanvasLayer_CreditsList/Control" index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.0
+offset_top = -214.0
+offset_right = 354.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2hnh")
+
+[node name="VBoxContainer" parent="CanvasLayer_CreditsList/Control/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 45
+
+[node name="ScrollContainer_Credits" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+mouse_filter = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vcash")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Credits_List" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator3" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="0"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xklmk")
+
+[node name="VBox_Labels" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Label_Credit1" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="0" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Godot Consultant"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Title_Separator" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="1" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28221" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="2" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28222" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="3" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "TimmyGobbles"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28223" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="4" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Patrick Vaughn"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28224" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="5" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28225" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="6" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Mykorii"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28226" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="7" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "LeaderJord"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28227" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="8" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Sable Spirit"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28228" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="9" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "camwin"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28229" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="10" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Coding Consultant"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28230" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="11" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28231" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="12" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28232" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="13" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Blitzar"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28233" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="14" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Patrick Vaughn"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28234" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="15" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Blender & 3D Consultant"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28235" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="16" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28236" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="17" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Rogi's Tutorials"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28237" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="18" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28238" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="19" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28239" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="20" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28240" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="21" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28241" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="22" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "P3p33"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28242" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="23" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Precipire"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28243" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="24" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28244" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="25" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Border Fire Shader"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28245" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="26" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28246" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="27" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Yui Kinomoto @arlez80"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28247" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="28" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "ColorauGuiyino"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28248" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="29" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Sky Shader"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28249" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="30" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28250" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="31" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "krzmig"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28251" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="32" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Smoke/Dust Shader"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28252" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="33" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28253" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="34" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "memo1918"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28254" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="35" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Shader Consultant"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28255" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="36" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28256" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="37" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Rogi's Tutorials"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28257" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="38" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28258" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="39" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28259" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="40" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28260" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="41" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Playtesting"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28261" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="42" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28262" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="43" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28263" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="44" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "P3p33"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28264" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="45" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "ZorahXIV"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28265" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="46" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28266" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="47" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Game Research"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28267" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="48" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28268" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="49" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28269" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="50" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28270" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="51" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Lord Overflow"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28271" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="52" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Jonas Newhouse"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28272" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="53" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Timeless"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28273" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="54" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Character Modeling Consultant"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28274" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="55" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28275" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="56" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "InsaneAlphaBeta"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28276" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="57" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Physics movement"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28277" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="58" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28278" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="59" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "camwin"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28279" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="60" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28280" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="61" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28281" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="62" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Player Movement"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28282" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="63" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28283" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="64" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "froggy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28284" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="65" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "parappa"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28285" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="66" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Character Creator"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28286" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="67" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28287" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="68" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "ZorahXIV"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28288" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="69" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28289" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="70" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Awab Abd elmouhsin"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28290" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="71" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28291" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="72" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Gear Spawns"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28292" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="73" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28293" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="74" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28294" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="75" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "nicbah"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28295" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="76" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Gear Abilities"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28296" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="77" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28297" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="78" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Rogi's Tutorials"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28298" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="79" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28299" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="80" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "DerekNFriendz"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28300" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="81" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Infinite plane design"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28301" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="82" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28302" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="83" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28303" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="84" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Lava Movement"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28304" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="85" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28305" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="86" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Blitzar"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28306" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="87" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Patrick Vaughn"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28307" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="88" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28308" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="89" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Steamplayerfrmyt"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28309" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="90" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28310" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="91" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "InsaneAlphaBeta"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28311" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="92" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "R0fael"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28312" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="93" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28313" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="94" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Camera"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28314" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="95" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28315" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="96" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28316" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="97" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28317" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="98" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Audio Design"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28318" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="99" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28319" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="100" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "InsaneAlphaBeta"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28320" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="101" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "froggy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28321" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="102" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "noyainrain"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28322" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="103" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28323" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="104" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28324" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="105" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Scoring"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28325" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="106" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28326" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="107" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Visual Design"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28327" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="108" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28328" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="109" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28329" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="110" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28330" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="111" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "InsaneAlphaBeta"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28331" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="112" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28332" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="113" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28333" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="114" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Rogi's Tutorials"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28334" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="115" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "froggy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28335" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="116" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28336" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="117" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Asset Design"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28337" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="118" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28338" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="119" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28339" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="120" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28340" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="121" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28341" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="122" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28342" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="123" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Blitzar"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28343" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="124" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Seamless Tiling"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28344" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="125" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28345" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="126" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28346" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="127" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Debug Tools"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28347" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="128" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28348" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="129" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "camwin"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28349" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="130" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Debug"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28350" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="131" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28351" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="132" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28352" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="133" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dormouse"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28353" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="134" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28354" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="135" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28355" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="136" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "nicbah"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28356" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="137" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Patrick Vaughn"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28357" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="138" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28358" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="139" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "camwin"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28359" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="140" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Doteyes"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28360" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="141" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Rubber Duck"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28361" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="142" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28362" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="143" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28363" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="144" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Joe Schmoe"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28364" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="145" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28365" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="146" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "mathdork"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28366" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="147" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Game Concepts"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28367" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="148" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28368" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="149" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28369" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="150" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Eagle Eyes"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28370" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="151" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28371" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="152" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28372" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="153" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28373" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="154" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Cute Games Club"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28374" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="155" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bartsss"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28375" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="156" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Eagle Brain"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28376" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="157" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28377" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="158" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28378" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="159" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Moral Support"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28379" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="160" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28380" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="161" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "ZorahXIV"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28381" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="162" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28382" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="163" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "InsaneAlphaBeta"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28383" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="164" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "camwin"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28384" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="165" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28385" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="166" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shawn S"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28386" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="167" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Rogi's Tutorials"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28387" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="168" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28388" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="169" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "P3p33"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28389" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="170" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Hydration"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Control@28390" type="Control" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="171" instance=ExtResource("5_fo7re")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="@Label@28391" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="172" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Precipire"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28392" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="173" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "ZorahXIV"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28393" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="174" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "frankfrodzz"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28394" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="175" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Roger Random"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28395" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="176" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "InsaneAlphaBeta"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28396" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="177" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Mykorii"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28397" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="178" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "d4v1d_h76"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28398" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="179" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "legandaryskate"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28399" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="180" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="@Label@28400" type="Label" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List/VBox_Labels" index="181" instance=ExtResource("4_x6t3v")]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "catkeyy__"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit2" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="2"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "
+
+Credits List Credits"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Title_Separator" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="3"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="Label_Credit3" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="4"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Lýz Lissade"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit11" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="5"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "PawnxPawn"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit4" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="6"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "murvkins"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit5" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="7"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "rulric"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit7" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="8"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Timeless"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit8" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="9"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kieguy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit10" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="10"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dungeon Martian"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit9" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="11"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Precipire"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Credit6" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="12"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "PKGameDev"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="13"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_a5mea")
+
+[node name="Label_Credit1" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="14"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 66
+text = "Thanks for playing!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" parent="CanvasLayer_CreditsList/Control/PanelContainer/VBoxContainer/ScrollContainer_Credits/Credits_List" index="15"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xklmk")
+
+[node name="MarginContainer" parent="CanvasLayer_CreditsList/Control/PanelContainer" index="1"]
+layout_mode = 2
+theme_override_constants/margin_left = 640
+theme_override_constants/margin_bottom = 366
+
+[node name="Button_Close" parent="CanvasLayer_CreditsList/Control/PanelContainer/MarginContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tuldi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vcash")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xklmk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a5mea")
+text = "X"
+icon_alignment = 1
+
+[node name="Credits_Tween_Control" parent="CanvasLayer_CreditsList/Control" index="1"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[editable path="CanvasLayer_CreditsList"]
